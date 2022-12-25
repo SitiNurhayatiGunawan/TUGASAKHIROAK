@@ -1,0 +1,22 @@
+int sensor_hujan = A0;  //sebagai port Sensor Hujan
+int Lamp = 11;  //sebagai port untuk lampu LED
+
+void setup() {
+  pinMode(Lamp, OUTPUT);
+  pinMode(sensor_hujan, INPUT);
+}
+bool condition = true;
+void loop() {
+  int kondisi_sensor = digitalRead(sensor_hujan); //untuk membaca data yang diterima oleh modul pendteksi hujan
+  if ((kondisi_sensor == HIGH) && condition) {
+   //tandanya sedang hujan
+   digitalWrite(Lamp, HIGH);
+    Serial.println("Hujan: Menyala");
+    delay(1000);
+    digitalWrite(Lamp, LOW);
+    condition=false;
+  } else {
+    digitalWrite(Lamp, LOW);  //tandanya tidak hujan
+  }
+
+}
